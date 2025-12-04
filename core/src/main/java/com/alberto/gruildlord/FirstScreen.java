@@ -1,6 +1,8 @@
 package com.alberto.gruildlord;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 
 /** First screen of the application. Displayed after the application is created. */
 public class FirstScreen implements Screen {
@@ -11,7 +13,11 @@ public class FirstScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        // Draw your screen here. "delta" is the time since last render in seconds.
+        // 1. Establecer el color que se usará para borrar la pantalla (gris oscuro)
+        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+
+        // 2. Dar la orden de borrado (limpiar el buffer de color)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
     @Override
