@@ -1,14 +1,28 @@
 package com.alberto.gruildlord;
 
+import com.alberto.gruildlord.entidades.Guardian;
+import com.alberto.gruildlord.recursos.Inventario;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /** First screen of the application. Displayed after the application is created. */
 public class FirstScreen implements Screen {
+
+    private SpriteBatch spriteBatch;
+
+    private Texture guardianTexture;
+
+    private Guardian guardian;
+
     @Override
     public void show() {
         // Prepare your screen here.
+        spriteBatch = new SpriteBatch();
+        guardianTexture = new Texture("guardian.png");
+        guardian = new Guardian(new Inventario(), 50.0f, 50.0f, 100.0f);
     }
 
     @Override
@@ -18,6 +32,14 @@ public class FirstScreen implements Screen {
 
         // 2. Dar la orden de borrado (limpiar el buffer de color)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        guardian.actualizar(delta);
+
+        spriteBatch.begin();
+
+        spriteBatch.draw(guardianTexture, guardian.getX(), guardian.getY(), 50, 50);
+
+        spriteBatch.end();
     }
 
     @Override
